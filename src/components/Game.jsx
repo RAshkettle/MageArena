@@ -5,6 +5,7 @@
 import { useFBX, useGLTF } from "@react-three/drei";
 import Ground from "./ground";
 import Player from "./Player";
+import Walls from "./walls";
 
 /**
  * Main Game component that serves as the container for all game elements
@@ -16,6 +17,8 @@ export const Game = () => {
     <>
       {/* Player character with animations */}
       <Player />
+
+      <Walls />
 
       {/* Ground surface with cobblestone texture */}
       <Ground />
