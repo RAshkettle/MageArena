@@ -3,7 +3,7 @@ import { useControls } from "leva";
 import * as THREE from "three";
 
 const Ground = () => {
-  const cobblestoneTexture = useTexture("/src/assets/cobblestone.jpg");
+  const cobblestoneTexture = useTexture("cobblestone.jpg");
 
   // Update texture repeat values
   cobblestoneTexture.wrapS = cobblestoneTexture.wrapT = THREE.RepeatWrapping;
