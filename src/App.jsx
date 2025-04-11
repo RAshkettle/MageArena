@@ -35,7 +35,13 @@ function App() {
         <Physics debug={true}>
           <Suspense fallback={null}>
             <KeyboardControls map={keyboardMap}>
-              <Ecctrl capsuleHalfHeight={0.5} friction={0.1} floatHeight={0.5}>
+              <Ecctrl
+                capsuleHalfHeight={0.5}
+                friction={0.1}
+                floatHeight={0.1}
+                maxVelLimit={5}
+                jumpVel={4}
+              >
                 {/* Player character with animations */}
                 <Player position={[0, -0.8, 0]} />
               </Ecctrl>

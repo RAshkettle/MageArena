@@ -22,8 +22,8 @@ const Ground = () => {
   return (
     <RigidBody
       type="fixed"
-      colliders="cuboid"
-      restitution={0.2}
+      colliders="trimesh"
+      ccd
       friction={1}
       userData={{ isGround: true }}
       position={[0, -0.1, 0]}
