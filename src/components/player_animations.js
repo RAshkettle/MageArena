@@ -30,8 +30,8 @@ export const PLAYER_ANIMS = {
     "CharacterArmature|CharacterArmature|CharacterArmature|Jump_Idle|CharacterArmature",
 
   // Movement animations
-  WALK: "CharacterArmature|CharacterArmature|Walk",
-  RUN: "CharacterArmature|CharacterArmature|Run",
+  WALK: "CharacterArmature|CharacterArmature|CharacterArmature|Walk|CharacterArmature|Walk",
+  RUN: "CharacterArmature|CharacterArmature|CharacterArmature|Run|CharacterArmature|Run",
   JUMP: "CharacterArmature|CharacterArmature|Jump",
 
   // Combat animations
