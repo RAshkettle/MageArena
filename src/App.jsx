@@ -32,7 +32,7 @@ function App() {
       <Canvas camera={{ position: [-1.5, 3, 10], fov: 42 }}>
         <Perf position="top-left" />
         {/* Physics world wrapper */}
-        <Physics debug={false}>
+        <Physics debug={true}>
           <Suspense fallback={null}>
             <KeyboardControls map={keyboardMap}>
               <Ecctrl>

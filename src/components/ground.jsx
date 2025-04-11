@@ -3,7 +3,6 @@
  * @description Component that renders the ground plane with a cobblestone texture
  */
 import { useTexture } from "@react-three/drei";
-import { useControls } from "leva";
 import * as THREE from "three";
 import { RigidBody } from "@react-three/rapier";
 
@@ -20,11 +19,6 @@ const Ground = () => {
   cobblestoneTexture.wrapS = cobblestoneTexture.wrapT = THREE.RepeatWrapping;
   cobblestoneTexture.repeat.set(10, 10);
 
-  // Leva controls for collider visibility
-  const { showColliders } = useControls("Physics", {
-    showColliders: false,
-  });
-
   return (
     <RigidBody
       type="fixed"
@@ -32,7 +26,7 @@ const Ground = () => {
       restitution={0.2}
       friction={1}
       userData={{ isGround: true }}
-      sensor={false}
+      position={[0, -0.1, 0]}
     >
       <mesh rotation={[-Math.PI / 2, 0, 0]}>
         {/* 50x50 units plane for the ground surface */}
@@ -40,14 +34,6 @@ const Ground = () => {
         {/* Standard material with cobblestone texture */}
         <meshStandardMaterial map={cobblestoneTexture} roughness={0.8} />
       </mesh>
-
-      {/* Invisible debug mesh that shows when colliders are visible */}
-      {showColliders && (
-        <mesh position={[0, -0.1, 0]}>
-          <boxGeometry args={[50, 0.2, 50]} />
-          <meshBasicMaterial color="green" transparent opacity={0.3} />
-        </mesh>
-      )}
     </RigidBody>
   );
 };

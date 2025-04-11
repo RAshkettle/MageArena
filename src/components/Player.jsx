@@ -52,11 +52,6 @@ export function Player(props) {
   /** @type {Object.<string, import('three').AnimationAction>} actions - Available animation actions */
   const { actions, names } = useAnimations(animations, group);
 
-  // Access the Physics control panel for shared properties
-  const { showColliders } = useControls("Physics", {
-    showColliders: false,
-  });
-
   // Player-specific controls
   const { animation, loopAnimation, animationSpeed } = useControls("Player", {
     Animation: folder({
@@ -110,7 +105,7 @@ export function Player(props) {
   return (
     <RigidBody
       ref={rigidBodyRef}
-      position={[0, colliderHeight / 2, 0]}
+      position={[0, colliderHeight / 2 + 0.5, 0]}
       enabledRotations={[false, false, false]}
       lockRotations={true}
       mass={1}
@@ -118,21 +113,16 @@ export function Player(props) {
       colliders={false}
       linearDamping={1}
       angularDamping={1}
-      friction={0.5}
+      friction={1}
+      restitution={0.2}
+      gravityScale={1.5}
     >
       {/* Capsule collider for the player */}
       <CapsuleCollider
         args={[colliderHeight / 2, colliderRadius]}
         position={[0, colliderOffsetY, 0]}
+        friction={1}
       />
-
-      {/* Debug visualization for the collider */}
-      {showColliders && (
-        <mesh position={[0, colliderOffsetY, 0]}>
-          <capsuleGeometry args={[colliderRadius, colliderHeight]} />
-          <meshBasicMaterial color="red" transparent opacity={0.3} wireframe />
-        </mesh>
-      )}
 
       {/* The actual player model */}
       <group ref={group} {...props} dispose={null} position={[0, 0, 0]}>
@@ -161,6 +151,6 @@ export function Player(props) {
 }
 
 // Preload the 3D model for performance
-useGLTF.preload("/Skeleton.glb");
+useGLTF.preload("./Skeleton.glb");
 
 export default Player;

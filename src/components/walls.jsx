@@ -20,11 +20,6 @@ const Walls = () => {
   wallsTexture.wrapS = wallsTexture.wrapT = THREE.RepeatWrapping;
   wallsTexture.repeat.set(20, 2);
 
-  // Leva controls for collider visibility
-  const { showColliders } = useControls("Physics", {
-    showColliders: false,
-  });
-
   return (
     <>
       <RigidBody
@@ -41,14 +36,6 @@ const Walls = () => {
           {/* Standard material with wall texture */}
           <meshStandardMaterial map={wallsTexture} roughness={0.8} />
         </mesh>
-
-        {/* Invisible debug mesh that shows when colliders are visible */}
-        {showColliders && (
-          <mesh position={[0, 0, 0]}>
-            <boxGeometry args={[0.5, 2, 50]} />
-            <meshBasicMaterial color="green" transparent opacity={0.6} />
-          </mesh>
-        )}
       </RigidBody>
       <RigidBody
         type="fixed"
@@ -64,14 +51,6 @@ const Walls = () => {
           {/* Standard material with wall texture */}
           <meshStandardMaterial map={wallsTexture} roughness={0.8} />
         </mesh>
-
-        {/* Invisible debug mesh that shows when colliders are visible */}
-        {showColliders && (
-          <mesh position={[0, 0, 0]}>
-            <boxGeometry args={[0.5, 2, 50]} />
-            <meshBasicMaterial color="green" transparent opacity={0.6} />
-          </mesh>
-        )}
       </RigidBody>
       <RigidBody
         type="fixed"
@@ -88,14 +67,6 @@ const Walls = () => {
           {/* Standard material with wall texture */}
           <meshStandardMaterial map={wallsTexture} roughness={0.8} />
         </mesh>
-
-        {/* Invisible debug mesh that shows when colliders are visible */}
-        {showColliders && (
-          <mesh position={[0, 0, 0]}>
-            <boxGeometry args={[0.5, 2, 50]} />
-            <meshBasicMaterial color="green" transparent opacity={0.6} />
-          </mesh>
-        )}
       </RigidBody>{" "}
       <RigidBody
         type="fixed"
@@ -112,14 +83,6 @@ const Walls = () => {
           {/* Standard material with wall texture */}
           <meshStandardMaterial map={wallsTexture} roughness={0.8} />
         </mesh>
-
-        {/* Invisible debug mesh that shows when colliders are visible */}
-        {showColliders && (
-          <mesh position={[0, 0, 0]}>
-            <boxGeometry args={[0.5, 2, 50]} />
-            <meshBasicMaterial color="green" transparent opacity={0.6} />
-          </mesh>
-        )}
       </RigidBody>
     </>
   );
