@@ -4,7 +4,7 @@
  */
 import { useFBX, useGLTF } from "@react-three/drei";
 import Ground from "./ground";
-import Player from "./Player";
+
 import Walls from "./walls";
 
 /**
@@ -15,9 +15,6 @@ import Walls from "./walls";
 export const Game = () => {
   return (
     <>
-      {/* Player character with animations */}
-      <Player />
-
       <Walls />
 
       {/* Ground surface with cobblestone texture */}

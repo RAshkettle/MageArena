@@ -40,7 +40,7 @@ export function Player(props) {
 
   /** @type {Object} scene - The loaded 3D model scene */
   /** @type {Array<import('three').AnimationClip>} animations - The loaded animations */
-  const { scene, animations } = useGLTF("/Skeleton.glb");
+  const { scene, animations } = useGLTF("./Skeleton.glb");
 
   /** @type {import('three').Object3D} Clone of the scene for instancing */
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
@@ -58,11 +58,7 @@ export function Player(props) {
   });
 
   // Player-specific controls
-  const {
-    animation,
-    loopAnimation,
-    animationSpeed,
-  } = useControls("Player", {
+  const { animation, loopAnimation, animationSpeed } = useControls("Player", {
     Animation: folder({
       animation: {
         options: names,
