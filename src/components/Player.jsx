@@ -33,6 +33,11 @@ export function Player(props) {
   /** @type {React.RefObject<import('@react-three/rapier').RigidBody>} */
   const rigidBodyRef = React.useRef();
 
+  // Define fixed collider dimensions
+  const colliderHeight = 0.5;
+  const colliderRadius = 0.5;
+  const colliderOffsetY = 0.7;
+
   /** @type {Object} scene - The loaded 3D model scene */
   /** @type {Array<import('three').AnimationClip>} animations - The loaded animations */
   const { scene, animations } = useGLTF("/Skeleton.glb");
@@ -57,9 +62,6 @@ export function Player(props) {
     animation,
     loopAnimation,
     animationSpeed,
-    colliderHeight,
-    colliderRadius,
-    colliderOffsetY,
   } = useControls("Player", {
     Animation: folder({
       animation: {
@@ -80,11 +82,6 @@ export function Player(props) {
             );
         }
       }),
-    }),
-    Collider: folder({
-      colliderHeight: { value: 0.5, min: 0.5, max: 4, step: 0.1 },
-      colliderRadius: { value: 0.5, min: 0.1, max: 2, step: 0.1 },
-      colliderOffsetY: { value: 0.7, min: 0, max: 3, step: 0.1 },
     }),
   });
 
