@@ -52,6 +52,7 @@ export function Player({
   const prevPositionRef = useRef([0, 0, 0]);
   const lastAnimationTimeRef = useRef(0);
   const isInCombatRef = useRef(false);
+  const isOnGround = useRef(true); // Track if the player is on the ground
 
   // Movement detection threshold
   const MOVEMENT_THRESHOLD = 0.005;
@@ -223,8 +224,9 @@ export function Player({
     prevPositionRef.current = [position.x, position.y, position.z];
 
     // Check if in air (jumping)
-    if (jump) {
+    if (jump && isOnGround.current) {
       setPlayerState(PlayerState.JUMP);
+      isOnGround.current = false; // Set to false when jumping
     }
     // Determine state based on movement
     else if (
@@ -241,6 +243,11 @@ export function Player({
       }
     } else {
       setPlayerState(PlayerState.IDLE);
+    }
+
+    // Check if player is on the ground
+    if (position.y <= 0.1) {
+      isOnGround.current = true;
     }
   });
 
