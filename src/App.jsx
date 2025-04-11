@@ -28,7 +28,12 @@ function App() {
         <OrbitControls />
 
         {/* Environment lighting for realistic illumination */}
-        <Environment preset="sunset" />
+        <Environment
+          preset="night"
+          background={true}
+          blur={0.5}
+          scene={undefined}
+        />
       </Canvas>
 
       {/* Leva control panel with configuration for width and drag capability */}
