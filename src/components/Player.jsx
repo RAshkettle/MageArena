@@ -13,9 +13,10 @@ import PLAYER_ANIMS from "./player_animations";
 
 /**
  * @typedef {Object} PlayerProps
- * @property {number} [position.x=0] - X position of the player
- * @property {number} [position.y=0] - Y position of the player
- * @property {number} [position.z=0] - Z position of the player
+ * @property {number} [position] - Array or Vector3 for player position [x, y, z]
+ * @property {number} [positionX=0] - X position of the player
+ * @property {number} [positionY=0] - Y position of the player
+ * @property {number} [positionZ=0] - Z position of the player
  * @property {number} [scale=1] - Scale of the player model
  * @property {boolean} [visible=true] - Whether the player is visible
  */
@@ -26,7 +27,21 @@ import PLAYER_ANIMS from "./player_animations";
  * @param {PlayerProps} props - The component props
  * @returns {JSX.Element} The player mesh component
  */
-export function Player(props) {
+export function Player({
+  position = [0, 0, 0],
+  positionX,
+  positionY,
+  positionZ,
+  scale = 1,
+  ...props
+}) {
+  // Allow individual position coordinates to override the position array
+  const finalPosition = [
+    positionX !== undefined ? positionX : position[0],
+    positionY !== undefined ? positionY : position[1],
+    positionZ !== undefined ? positionZ : position[2],
+  ];
+
   /** @type {React.RefObject<import('three').Group>} */
   const group = React.useRef();
 
@@ -95,7 +110,13 @@ export function Player(props) {
   }, [animation, loopAnimation, animationSpeed, actions]);
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      position={finalPosition}
+      scale={scale}
+      {...props}
+      dispose={null}
+    >
       <group name="Root_Scene">
         <group name="RootNode">
           <group

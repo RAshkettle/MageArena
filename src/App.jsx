@@ -35,9 +35,9 @@ function App() {
         <Physics debug={true}>
           <Suspense fallback={null}>
             <KeyboardControls map={keyboardMap}>
-              <Ecctrl>
+              <Ecctrl capsuleHalfHeight={0.5}>
                 {/* Player character with animations */}
-                <Player />
+                <Player position={[0, -0.8, 0]} />
               </Ecctrl>
             </KeyboardControls>
 
