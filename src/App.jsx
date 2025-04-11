@@ -5,7 +5,6 @@
 import { Environment, KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Leva } from "leva";
 import { Game } from "./components/Game";
 import { Perf } from "r3f-perf";
 import { Suspense } from "react";
@@ -74,18 +73,6 @@ function App() {
           scene={undefined}
         />
       </Canvas>
-
-      {/* Leva control panel with configuration for width and drag capability */}
-      <Leva
-        titleBar={{ drag: true, filter: true }}
-        collapsed={false}
-        theme={{
-          sizes: {
-            rootWidth: "350px",
-            controlWidth: "200px",
-          },
-        }}
-      />
     </>
   );
 }

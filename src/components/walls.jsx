@@ -3,7 +3,6 @@
  * @description Component that renders the wallss with texturing
  */
 import { useTexture } from "@react-three/drei";
-import { useControls } from "leva";
 import * as THREE from "three";
 import { RigidBody } from "@react-three/rapier";
 

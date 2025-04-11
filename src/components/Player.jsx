@@ -7,7 +7,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useGraph, useFrame } from "@react-three/fiber";
 import { useGLTF, useAnimations, useKeyboardControls } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
-import { useControls, folder, button } from "leva";
 import * as THREE from "three";
 import PLAYER_ANIMS, { getSimpleName } from "./player_animations";
 
@@ -110,7 +109,6 @@ export function Player({
   // Crossfade to a new animation
   const fadeToAction = (newAction, duration = 0.2) => {
     if (!actions[newAction]) {
-      console.warn(`Animation "${newAction}" not found!`);
       return;
     }
 
@@ -159,7 +157,6 @@ export function Player({
     if (actions) {
       const animationName = getAnimationForState(playerState);
       fadeToAction(animationName);
-      console.log(`Animation changed to: ${playerState} (${animationName})`);
     }
   }, [playerState, actions]);
 
@@ -167,7 +164,6 @@ export function Player({
   useEffect(() => {
     if (actions && actions[PLAYER_ANIMS.IDLE]) {
       fadeToAction(PLAYER_ANIMS.IDLE);
-      console.log("Initial idle animation started");
     }
   }, [actions]);
 
@@ -249,50 +245,6 @@ export function Player({
     if (position.y <= 0.1) {
       isOnGround.current = true;
     }
-  });
-
-  // Debug controls in Leva panel
-  useControls("Player Controls", {
-    currentState: {
-      value: playerState,
-      disabled: true,
-    },
-    Actions: folder({
-      Attack: button(() => {
-        if (!isInCombatRef.current) {
-          setPlayerState(PlayerState.ATTACK);
-          isInCombatRef.current = true;
-        }
-      }),
-      SpellCast: button(() => {
-        if (!isInCombatRef.current) {
-          setPlayerState(PlayerState.SPELL_CAST);
-          isInCombatRef.current = true;
-        }
-      }),
-      HitReact: button(() => {
-        if (!isInCombatRef.current) {
-          setPlayerState(PlayerState.HIT_REACT);
-          isInCombatRef.current = true;
-        }
-      }),
-      Death: button(() => {
-        setPlayerState(PlayerState.DEATH);
-        isInCombatRef.current = true;
-      }),
-      forceIdle: button(() => {
-        setPlayerState(PlayerState.IDLE);
-        isInCombatRef.current = false;
-      }),
-    }),
-    AnimationInfo: folder({
-      availableAnimations: {
-        value: Object.keys(PLAYER_ANIMS).map(
-          (key) => `${key}: ${getSimpleName(PLAYER_ANIMS[key])}`
-        ),
-        disabled: true,
-      },
-    }),
   });
 
   return (
