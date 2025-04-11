@@ -25,7 +25,7 @@ const simplifyAnimationName = (animName) => {
  */
 export const PLAYER_ANIMS = {
   // Idle animations
-  IDLE: "CharacterArmature|CharacterArmature|Idle",
+  IDLE: "CharacterArmature|CharacterArmature|CharacterArmature|Idle|CharacterArmature|Idle",
   JUMP_IDLE:
     "CharacterArmature|CharacterArmature|CharacterArmature|Jump_Idle|CharacterArmature",
 

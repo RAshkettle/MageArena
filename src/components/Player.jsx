@@ -10,6 +10,7 @@ import { SkeletonUtils } from "three-stdlib";
 import { useControls, folder, button } from "leva";
 import { RigidBody, CapsuleCollider } from "@react-three/rapier";
 import * as THREE from "three";
+import PLAYER_ANIMS from "./player_animations";
 
 /**
  * @typedef {Object} PlayerProps
@@ -63,7 +64,7 @@ export function Player(props) {
     Animation: folder({
       animation: {
         options: names,
-        value: names[0] || "",
+        value: PLAYER_ANIMS.IDLE,
       },
       loopAnimation: true,
       animationSpeed: { value: 1, min: 0.1, max: 2, step: 0.1 },
