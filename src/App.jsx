@@ -4,6 +4,8 @@
  */
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Physics } from "@react-three/rapier";
+import { Leva } from "leva";
 import { Game } from "./components/Game";
 
 /**
@@ -16,8 +18,11 @@ function App() {
     <>
       {/* Main 3D canvas with camera configuration */}
       <Canvas camera={{ position: [-1.5, 3, 10], fov: 42 }}>
-        {/* Main game scene components */}
-        <Game />
+        {/* Physics world wrapper */}
+        <Physics debug={false}>
+          {/* Main game scene components */}
+          <Game />
+        </Physics>
 
         {/* Camera controls allowing user interaction */}
         <OrbitControls />
@@ -25,6 +30,9 @@ function App() {
         {/* Environment lighting for realistic illumination */}
         <Environment preset="sunset" />
       </Canvas>
+
+      {/* Leva control panel */}
+      <Leva />
     </>
   );
 }
