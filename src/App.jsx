@@ -2,7 +2,7 @@
  * @module App
  * @description Root application component that sets up the 3D scene
  */
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Leva } from "leva";
@@ -23,9 +23,6 @@ function App() {
           {/* Main game scene components */}
           <Game />
         </Physics>
-
-        {/* Camera controls allowing user interaction */}
-        <OrbitControls />
 
         {/* Environment lighting for realistic illumination */}
         <Environment
