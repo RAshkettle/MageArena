@@ -8,7 +8,6 @@ import { useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import { useControls, folder, button } from "leva";
-import { RigidBody, CapsuleCollider } from "@react-three/rapier";
 import * as THREE from "three";
 import PLAYER_ANIMS from "./player_animations";
 
@@ -30,13 +29,6 @@ import PLAYER_ANIMS from "./player_animations";
 export function Player(props) {
   /** @type {React.RefObject<import('three').Group>} */
   const group = React.useRef();
-  /** @type {React.RefObject<import('@react-three/rapier').RigidBody>} */
-  const rigidBodyRef = React.useRef();
-
-  // Define fixed collider dimensions
-  const colliderHeight = 0.5;
-  const colliderRadius = 0.5;
-  const colliderOffsetY = 0.7;
 
   /** @type {Object} scene - The loaded 3D model scene */
   /** @type {Array<import('three').AnimationClip>} animations - The loaded animations */
@@ -103,50 +95,27 @@ export function Player(props) {
   }, [animation, loopAnimation, animationSpeed, actions]);
 
   return (
-    <RigidBody
-      ref={rigidBodyRef}
-      position={[0, colliderHeight / 2 + 0.5, 0]}
-      enabledRotations={[false, false, false]}
-      lockRotations={true}
-      mass={1}
-      type="dynamic"
-      colliders={false}
-      linearDamping={1}
-      angularDamping={1}
-      friction={1}
-      restitution={0.2}
-      gravityScale={1.5}
-    >
-      {/* Capsule collider for the player */}
-      <CapsuleCollider
-        args={[colliderHeight / 2, colliderRadius]}
-        position={[0, colliderOffsetY, 0]}
-        friction={1}
-      />
-
-      {/* The actual player model */}
-      <group ref={group} {...props} dispose={null} position={[0, 0, 0]}>
-        <group name="Root_Scene">
-          <group name="RootNode">
-            <group
-              name="CharacterArmature"
-              rotation={[-Math.PI / 2, 0, 0]}
-              scale={100}
-            >
-              <primitive object={nodes.Root} />
-            </group>
-            <skinnedMesh
-              name="Skeleton"
-              geometry={nodes.Skeleton.geometry}
-              material={materials.AtlasMaterial}
-              skeleton={nodes.Skeleton.skeleton}
-              rotation={[-Math.PI / 2, 0, 0]}
-              scale={100}
-            />
+    <group ref={group} {...props} dispose={null}>
+      <group name="Root_Scene">
+        <group name="RootNode">
+          <group
+            name="CharacterArmature"
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={100}
+          >
+            <primitive object={nodes.Root} />
           </group>
+          <skinnedMesh
+            name="Skeleton"
+            geometry={nodes.Skeleton.geometry}
+            material={materials.AtlasMaterial}
+            skeleton={nodes.Skeleton.skeleton}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={100}
+          />
         </group>
       </group>
-    </RigidBody>
+    </group>
   );
 }
 
