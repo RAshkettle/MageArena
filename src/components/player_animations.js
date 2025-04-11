@@ -34,9 +34,9 @@ export const PLAYER_ANIMS = {
 
   // Combat animations
   ATTACK:
-    "CharacterArmature|CharacterArmature|CharacterArmature|Attack|CharacterArmature|Attack",
+    "CharacterArmature|CharacterArmature|CharacterArmature|Sword|CharacterArmature|Swo",
   SPELL_CAST:
-    "CharacterArmature|CharacterArmature|CharacterArmature|Spell_Cast|CharacterArmature|Spell_Cast",
+    "CharacterArmature|CharacterArmature|CharacterArmature|Punch|CharacterArmature|Pun",
 
   // Other animations
   DEATH:

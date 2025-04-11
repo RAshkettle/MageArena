@@ -184,6 +184,14 @@ export function Player({
         setPlayerState(PlayerState.SPELL_CAST);
         isInCombatRef.current = true;
         lastAnimationTimeRef.current = now;
+      } else if (e.code === "Digit2") {
+        setPlayerState(PlayerState.SPELL_CAST);
+        isInCombatRef.current = true;
+        lastAnimationTimeRef.current = now;
+      } else if (e.code === "Digit1") {
+        setPlayerState(PlayerState.ATTACK);
+        isInCombatRef.current = true;
+        lastAnimationTimeRef.current = now;
       } else if (e.code === "KeyH") {
         setPlayerState(PlayerState.HIT_REACT);
         isInCombatRef.current = true;
