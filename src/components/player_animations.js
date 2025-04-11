@@ -26,22 +26,23 @@ const simplifyAnimationName = (animName) => {
 export const PLAYER_ANIMS = {
   // Idle animations
   IDLE: "CharacterArmature|CharacterArmature|CharacterArmature|Idle|CharacterArmature|Idle",
-  JUMP_IDLE:
-    "CharacterArmature|CharacterArmature|CharacterArmature|Jump_Idle|CharacterArmature",
 
   // Movement animations
   WALK: "CharacterArmature|CharacterArmature|CharacterArmature|Walk|CharacterArmature|Walk",
   RUN: "CharacterArmature|CharacterArmature|CharacterArmature|Run|CharacterArmature|Run",
-  JUMP: "CharacterArmature|CharacterArmature|Jump",
+  JUMP: "CharacterArmature|CharacterArmature|CharacterArmature|Jump|CharacterArmature|Jump",
 
   // Combat animations
-  ATTACK: "CharacterArmature|CharacterArmature|Attack",
-  SPELL_CAST: "CharacterArmature|CharacterArmature|Spell_Cast",
+  ATTACK:
+    "CharacterArmature|CharacterArmature|CharacterArmature|Attack|CharacterArmature|Attack",
+  SPELL_CAST:
+    "CharacterArmature|CharacterArmature|CharacterArmature|Spell_Cast|CharacterArmature|Spell_Cast",
 
   // Other animations
-  DEATH: "CharacterArmature|CharacterArmature|Death",
-  HIT_REACT: "CharacterArmature|CharacterArmature|Hit_React",
-  DANCE: "CharacterArmature|CharacterArmature|Dance",
+  DEATH:
+    "CharacterArmature|CharacterArmature|CharacterArmature|Death|CharacterArmature|Death",
+  HIT_REACT:
+    "CharacterArmature|CharacterArmature|CharacterArmature|Hit-React|CharacterArmature|Hit-React",
 };
 
 /**

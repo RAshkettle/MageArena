@@ -9,7 +9,7 @@ import { Leva } from "leva";
 import { Game } from "./components/Game";
 import { Perf } from "r3f-perf";
 import { Suspense } from "react";
-import Ecctrl, { EcctrlJoystick } from "ecctrl";
+import Ecctrl from "ecctrl";
 import Player from "./components/Player";
 
 /**
@@ -32,15 +32,29 @@ function App() {
       <Canvas camera={{ position: [-1.5, 3, 10], fov: 42 }}>
         <Perf position="top-left" />
         {/* Physics world wrapper */}
-        <Physics debug={true}>
+        <Physics>
           <Suspense fallback={null}>
             <KeyboardControls map={keyboardMap}>
               <Ecctrl
                 capsuleHalfHeight={0.5}
-                friction={0.1}
-                floatHeight={0.1}
-                maxVelLimit={5}
-                jumpVel={4}
+                capsuleRadius={0.3}
+                friction={0.2}
+                floatHeight={0}
+                movementSpeed={4}
+                turnSpeed={15}
+                sprintSpeed={2.5}
+                jumpHeight={6}
+                jumpDistance={4}
+                gravity={[0, -30, 0]}
+                maxStepHeight={0.3}
+                camInitialDistance={5}
+                camMinDistance={1}
+                camMaxDistance={10}
+                animated={true}
+                autoBalance={true}
+                slopeMaxAngle={1}
+                characterInitPosition={[0, 3, 0]}
+                debug={false}
               >
                 {/* Player character with animations */}
                 <Player position={[0, -0.8, 0]} />
