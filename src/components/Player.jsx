@@ -8,12 +8,39 @@ import { useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 
+/**
+ * @typedef {Object} PlayerProps
+ * @property {number} [position.x=0] - X position of the player
+ * @property {number} [position.y=0] - Y position of the player
+ * @property {number} [position.z=0] - Z position of the player
+ * @property {number} [scale=1] - Scale of the player model
+ * @property {boolean} [visible=true] - Whether the player is visible
+ */
+
+/**
+ * Player component that renders a 3D skeleton model with animations
+ *
+ * @param {PlayerProps} props - The component props
+ * @returns {JSX.Element} The player mesh component
+ */
 export function Player(props) {
+  /** @type {React.RefObject<import('three').Group>} */
   const group = React.useRef();
+
+  /** @type {Object} scene - The loaded 3D model scene */
+  /** @type {Array<import('three').AnimationClip>} animations - The loaded animations */
   const { scene, animations } = useGLTF("/Skeleton.glb");
+
+  /** @type {import('three').Object3D} Clone of the scene for instancing */
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
+
+  /** @type {Object} nodes - The 3D model nodes */
+  /** @type {Object} materials - The 3D model materials */
   const { nodes, materials } = useGraph(clone);
+
+  /** @type {Object.<string, import('three').AnimationAction>} actions - Available animation actions */
   const { actions } = useAnimations(animations, group);
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Root_Scene">
@@ -39,6 +66,7 @@ export function Player(props) {
   );
 }
 
+// Preload the 3D model for performance
 useGLTF.preload("/Skeleton.glb");
 
 export default Player;
