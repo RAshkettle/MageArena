@@ -82,9 +82,9 @@ export function Player(props) {
       }),
     }),
     Collider: folder({
-      colliderHeight: { value: 1, min: 0.5, max: 4, step: 0.1 },
+      colliderHeight: { value: 0.5, min: 0.5, max: 4, step: 0.1 },
       colliderRadius: { value: 0.5, min: 0.1, max: 2, step: 0.1 },
-      colliderOffsetY: { value: 1, min: 0, max: 3, step: 0.1 },
+      colliderOffsetY: { value: 0.7, min: 0, max: 3, step: 0.1 },
     }),
   });
 

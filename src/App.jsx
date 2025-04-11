@@ -30,9 +30,18 @@ function App() {
         {/* Environment lighting for realistic illumination */}
         <Environment preset="sunset" />
       </Canvas>
-
-      {/* Leva control panel */}
-      <Leva />
+      
+      {/* Leva control panel with configuration for width and drag capability */}
+      <Leva 
+        titleBar={{ drag: true, filter: true }}
+        collapsed={false}
+        theme={{
+          sizes: {
+            rootWidth: "350px",
+            controlWidth: "200px"
+          }
+        }}
+      />
     </>
   );
 }
