@@ -2,7 +2,7 @@
  * @module App
  * @description Root application component that sets up the 3D scene
  */
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Leva } from "leva";
@@ -24,22 +24,19 @@ function App() {
           <Game />
         </Physics>
 
-        {/* Camera controls allowing user interaction */}
-        <OrbitControls />
-
         {/* Environment lighting for realistic illumination */}
         <Environment preset="sunset" />
       </Canvas>
-      
+
       {/* Leva control panel with configuration for width and drag capability */}
-      <Leva 
+      <Leva
         titleBar={{ drag: true, filter: true }}
         collapsed={false}
         theme={{
           sizes: {
             rootWidth: "350px",
-            controlWidth: "200px"
-          }
+            controlWidth: "200px",
+          },
         }}
       />
     </>
