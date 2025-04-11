@@ -1,12 +1,10 @@
 import { useFBX, useGLTF } from "@react-three/drei";
+import Ground from "./ground";
 
 export const Game = () => {
   return (
     <>
-      <mesh>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color='blue' />
-      </mesh>
+      <Ground />
       <ambientLight intensity={1} />
     </>
   );
